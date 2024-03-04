@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class randomRotation : MonoBehaviour
 {
+    public float minSpeed;
+    public float maxSpeed;
     private float timeBetweenRotations;
     private Quaternion firstRotation;
     private Quaternion secondRotation;
     private bool isRotating = false;
+
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +37,7 @@ public class randomRotation : MonoBehaviour
     IEnumerator rotate()
     {
         isRotating = true;
-        timeBetweenRotations = Random.Range(1, 5);
+        timeBetweenRotations = Random.Range(minSpeed, maxSpeed);
         float elapsedTime = 0;
         while (elapsedTime < timeBetweenRotations)
         {
