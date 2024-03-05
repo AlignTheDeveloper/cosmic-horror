@@ -3,16 +3,47 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class gameManager : MonoBehaviour
+
+public static gameManager instance;
+public GameState state;
+//public static event Action
 {
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    public void UpdateGameState(GameState newState)
+    {
+        state = newState;
+
+        switch (newState)
+        {
+            case GameState.MainMenu:
+                // Handle main menu state
+                HandleMainMenuState();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
+        }
+
+        OnGameStateChanged?.Invoke(newState);
+    }
+
+    // Handle main menu state
+    HandleMainMenuState()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public enum GameState
     {
-        
+        MainMenu,
+        InGame,
+        Paused,
+        GameOver
     }
 }

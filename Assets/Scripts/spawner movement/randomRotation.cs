@@ -23,11 +23,11 @@ public class randomRotation : MonoBehaviour
     {
         if (!isRotating)
         {
-            randomizeRotation();
+            RandomizeRotation();
         }
     }
 
-    void randomizeRotation()
+    void RandomizeRotation()
     {
         firstRotation = transform.rotation;
         secondRotation = Random.rotation;
